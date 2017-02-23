@@ -15,7 +15,7 @@ public class Warrior {
     private String name;
 
     //a list of Warriors that warrior defeats
-    private ArrayList<WarriorRelationship> defeatedWarriors;
+  //  private ArrayList<WarriorRelationship> defeatedWarriors;
     private List<WarriorRelationship> warriorRelationshipList;
 
     public Warrior(){}
@@ -23,19 +23,17 @@ public class Warrior {
     //Default constructor to initialize name and the list of other warriors this warrior defeats (creates empty list)
     public Warrior(String name) {
         this.name = name;
-        this.defeatedWarriors = new ArrayList<WarriorRelationship>();
+      //  this.defeatedWarriors = new ArrayList<WarriorRelationship>();
         this.warriorRelationshipList = new ArrayList<WarriorRelationship>();
     }
 
-
+    public static Warrior createNewWarrior(String name){
+        return new Warrior(name);
+    }
 
     private List<WarriorRelationship> getWarriorRelationship() {
         return warriorRelationshipList;
     }
-
-//    public static Warrior createWarriorRelationship(Warrior defeatedWarrior, String actionName){
-//       return new Warrior(name);
-//    }
 
     //ADD a warrior to the defeatedWarrior array
     public void createDefeatedWarrior(Warrior warrior, String action) {
@@ -47,25 +45,27 @@ public class Warrior {
     }
 
 
-
-
-
     //pass a warrior obj to check if warrior exists in the defeated warriors list
     private int findDefeatedWarrior(Warrior warrior) {
-     return this.defeatedWarriors.indexOf(warrior);
+     return this.warriorRelationshipList.indexOf(warrior);
     }
 
-
-    //OR pass the warrior name to check if the name exists
-//    private int findDefeatedWarrior(String warriorName){
-//        for(int i = 0; i < this.defeatedWarriors.size(); i++){
-//         //   Warrior defeatedWarrior = this.defeatedWarriors.get(i);
+//    private int findWarrior(String warriorName){
+//        for(int i = 0; i < this.warriorRelationshipList.size(); i++){
+//            //   Warrior defeatedWarrior = this.defeatedWarriors.get(i);
 //            if(defeatedWarrior.getName().equals(warriorName)){
 //                return i;
 //            }
 //        }
 //        return -1;
 //    }
+
+    public boolean isInDefeatedList(Warrior opposingWarrior){
+        if(warriorRelationshipList.contains(opposingWarrior));
+        return true;
+    }
+
+
 
     public void displayWarriorRelationshipList(){
 
@@ -78,6 +78,14 @@ public class Warrior {
     public String getName() {
         return name;
     }
+
+//    //get random warrior
+//    public int getRandom(){
+//
+//       Random generator = new Random();
+//       int randIndex = generator.nextInt(warriorList.size());
+//       return randIndex;
+//    }
 
 
 
@@ -111,13 +119,7 @@ public class Warrior {
 
 
 
-//    //get random warrior
-//    public int getRandom(){
 //
-//        Random generator = new Random();
-//        int randIndex = generator.nextInt(warriorList.size());
-//        return randIndex;
-//    }
 
 //    //ADD warrior list item
 //    public void addWarrior(String warrior){

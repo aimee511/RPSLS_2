@@ -7,6 +7,25 @@ public class Player {
     private String name;
     //private int score;
     private int chosenWarrior;
+    private Warrior chosenWarriorObject;
+    private int score;
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public Warrior getChosenWarriorObject(int warriorIndex) {
+        return chosenWarriorObject;
+    }
+
+    public void setChosenWarriorObject(Warrior chosenWarriorObject) {
+        this.chosenWarriorObject = chosenWarriorObject;
+       // System.out.println("Player Class - player chosen warrior set: " + chosenWarriorObject.getName());
+    }
 
     public int getChosenWarrior() {
         return chosenWarrior;
