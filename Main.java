@@ -1,5 +1,7 @@
 package co.za.entelect.jbootcamp;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Main {
@@ -7,52 +9,56 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         Scanner scanner = new Scanner(System.in);
-        //Warrior warriors = new Warrior();
+        ArrayList<Warrior> warriors = new ArrayList<Warrior>();
         Player player1 = new Player();
         Player player2 = new Player();
         String opponentSelect;
         int playerChosenWarrior;
         int compChosenWarrior;
 
-        //TODO: Create the warrior relationships - make it configurable?
-        //TEST relationship and create warriors
-
         //CREATE NEW WARRIORS
+        //TODO: create method to "Create Warriors" that adds them to the array list
+        //TODO: LATER - create method to remove warriors
         Warrior rock = new Warrior("Rock");
         Warrior paper = new Warrior("Paper");
         Warrior scissors = new Warrior("Scissors");
         Warrior lizard = new Warrior("Lizard");
         Warrior spock = new Warrior("Spock");
 
+        warriors.add(rock);
+
+
+        //NEW defeated warriors after classes have been split (WarriorRelationship class)
+
         //CREATE DEFEATS
-        rock.addDefeatedWarrior(scissors);
-        rock.addDefeatedWarrior(lizard);
+        rock.createDefeatedWarrior(scissors, "crushes");
+        rock.createDefeatedWarrior(lizard, "crushes");
 
-        paper.addDefeatedWarrior(rock);
-        paper.addDefeatedWarrior(spock);
+        paper.createDefeatedWarrior(rock, "covers");
+        paper.createDefeatedWarrior(spock, "disproves");
 
-        scissors.addDefeatedWarrior(lizard);
-        scissors.addDefeatedWarrior(paper);
+        scissors.createDefeatedWarrior(lizard, "decapitates");
+        scissors.createDefeatedWarrior(paper, "cuts");
 
-        lizard.addDefeatedWarrior(paper);
-        lizard.addDefeatedWarrior(spock);
+        lizard.createDefeatedWarrior(paper,"eats");
+        lizard.createDefeatedWarrior(spock, "poisons");
 
-        spock.addDefeatedWarrior(scissors);
-        spock.addDefeatedWarrior(rock);
+        spock.createDefeatedWarrior(scissors, "smashes");
+        spock.createDefeatedWarrior(rock, "vaporizes");
 
-
-        //DISPLAY RELATIONSHIPS
-        rock.displayDefeatedWarriors(rock);
-        paper.displayDefeatedWarriors(paper);
-        scissors.displayDefeatedWarriors(scissors);
-        lizard.displayDefeatedWarriors(lizard);
-        spock.displayDefeatedWarriors(spock);
-
-
+        //DISPLAY ALL RELATIONSHIPS
+        //TODO - create method to display these in order
+        rock.displayWarriorRelationshipList();
+        paper.displayWarriorRelationshipList();
+        scissors.displayWarriorRelationshipList();
+        lizard.displayWarriorRelationshipList();
+        spock.displayWarriorRelationshipList();
 
 
-//        Display the warriors with the index number for user to select
-       //warriors.displayWarriors();
+
+
+//       Display the warriors with the index number for user to select
+         warriors.displayWarriors();
 
         //Select OPPONENT
 //        System.out.println("Do you  want to play against the computer? Y/N" + "\n");
