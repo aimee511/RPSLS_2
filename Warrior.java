@@ -61,8 +61,22 @@ public class Warrior {
 //    }
 
     public boolean isInDefeatedList(Warrior opposingWarrior){
-        if(warriorRelationshipList.contains(opposingWarrior));
-        return true;
+        if(this.warriorRelationshipList.contains(opposingWarrior)){
+            System.out.println("PLAYER WINS!!!!!");
+            return true;
+        } else {
+            System.out.println("COULD NOT DETERMINE WINNER");
+            return false;
+        }
+
+
+        //System.out.println("Checking winner: " + "\n");
+        //System.out.println("Victorious Warrior: " + this.getName());
+
+//        if(this.findDefeatedWarrior(opposingWarrior) > 0) {
+//            System.out.println("Warrior is in defeated list");
+//        } else System.out.println("Warrior is NOT defeated list");
+//        return true;
     }
 
 

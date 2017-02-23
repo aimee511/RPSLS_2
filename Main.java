@@ -8,17 +8,14 @@ import java.util.Random;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+
         Scanner scanner = new Scanner(System.in);
-        String warriorName;
         Player player1 = new Player();
         Player player2 = new Player();
-        String opponentSelect;
-        int playerChosenWarriorInt;
-        int compChosenWarriorInt;
         Warrior playerChosenWarrior;
         Warrior compChosenWarrior;
         int score;
+        int quit = 1;
 
 
         //TODO add all warriors to the list so that the list can be dynamically changed to display all game options
@@ -40,11 +37,11 @@ public class Main {
         warriors.add(spock);
 
 
-
         //NEW defeated warriors after classes have been split (WarriorRelationship class)
 
         //CREATE DEFEATS
 
+        while (quit != 0){
         //TODO the below to a list that can be iteration through (based on the "Warrior" list)
         rock.createDefeatedWarrior(scissors, "crushes");
         rock.createDefeatedWarrior(lizard, "crushes");
@@ -55,7 +52,7 @@ public class Main {
         scissors.createDefeatedWarrior(lizard, "decapitates");
         scissors.createDefeatedWarrior(paper, "cuts");
 
-        lizard.createDefeatedWarrior(paper,"eats");
+        lizard.createDefeatedWarrior(paper, "eats");
         lizard.createDefeatedWarrior(spock, "poisons");
 
         spock.createDefeatedWarrior(scissors, "smashes");
@@ -64,7 +61,7 @@ public class Main {
 
         //DISPLAY WARRIORS DYNAMICALLY
         System.out.println("*** - THE WARRIORS - ***" + "\n");
-        for(Warrior temp : warriors){
+        for (Warrior temp : warriors) {
             System.out.println(warriors.indexOf(temp) + ": " + temp.getName() + "\n");
         }
 
@@ -77,9 +74,10 @@ public class Main {
         lizard.displayWarriorRelationshipList();
         spock.displayWarriorRelationshipList();
 
+
 //      SELECT OPPONENT
         System.out.println("Do you  want to play against the computer? Y/N" + "\r");
-        if(scanner.next().toLowerCase().trim().equals("y")){
+        if (scanner.next().toLowerCase().trim().equals("y")) {
             player2.setName("computer");
         } else {
             System.out.println("Please enter Player 2's name: " + "\r");
@@ -109,88 +107,29 @@ public class Main {
         int randIndex = generator.nextInt(warriors.size());
         compChosenWarrior = warriors.get(randIndex);
 
-        //TODO add the sam functionality as below for when the user is ot playing against the computer
+        //TODO add the same functionality as below for when the user is ot playing against the computer
         System.out.println("Your opponent has selected: " + compChosenWarrior.getName());
         player2.setChosenWarriorObject(compChosenWarrior);
 
         //DETERMINE WINNER
-        score = Score.determineWinner(playerChosenWarrior, compChosenWarrior);
+            System.out.println("OUTCOME: "  + Score.determineWinner(playerChosenWarrior, compChosenWarrior));
 
-        if(score == 1) System.out.println("Player 1 is the winner" + "\n");
-        else if (score == -1) System.out.println("Player 2 is the winner" + "\n");
-        else System.out.println("DRAW" + "\n");
-
-
-
-
+            if(Score.determineWinner(playerChosenWarrior, compChosenWarrior) == 1){
+                System.out.println("PLAYER WINS: "  + Score.determineWinner(playerChosenWarrior, compChosenWarrior));
+            } else if(Score.determineWinner(playerChosenWarrior, compChosenWarrior) == -1){
+                System.out.println("COMPUTER WINS: "  + Score.determineWinner(playerChosenWarrior, compChosenWarrior));
+            } else System.out.println("DRAW");
 
 
+//        if (score == 1) {
+//            System.out.println("Player 1 is the winner" + "\n");
+//        } else if (score == -1) {
+//            System.out.println("Player 2 is the winner" + "\n");
+//        } else System.out.println("DRAW" + "\n");
 
-
-
-
-
-
-
-        //TODO: Compare the player's warrior with the user's warrior
-
-//        System.out.println("You have chosen to play with: "  );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-////        Warrior rock = new Warrior("rock");
-////        Warrior paper = new Warrior("paper");
-////        Warrior scissors = new Warrior("scissors");
-////        Warrior lizard = new Warrior("lizard");
-////        Warrior spock = new Warrior("spock");
-//        Player player1 = new Player();
-//        Player player2 = new Player();
-//        //Boolean playComputer = new Boolean();
-//
-////        System.out.println("Do you  want to play against the computer? Y/N" + "\n");
-////        use scanner to add new warrior OR set the standard warrior list in the class
-//
-////        User to select if they want to play with the default warriors
-////        System.out.println("Do you  want to play with the default warriors? Y/N");
-//
-//
-//
-//
-//        System.out.println("Please enter Player 1: ");
-//        player1.setName(scanner.next());
-//
-//        System.out.println("Please enter Player 2: ");
-//        player2.setName(scanner.next());
-//
-//        System.out.println("Player 1: " + player1.getName() + "\n" + "Player 2: " + player2.getName());
-//
-//        System.out.println(player1.getName() + ", you're up - please choose your warrior: ");
-//       // player1.setChosenWarrior(scanner.next());
-//
-//
-
-
-
-
-
+        System.out.println("Play again? 1 = YES, 0 = NO: " + "\n");
+        quit = scanner.nextInt();
+      }
 
     }
 }

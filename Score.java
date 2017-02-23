@@ -30,13 +30,9 @@ public class Score extends Player{
 
     // returns 1 if player 1 wins, 0 if draw and -1 if player 1 loses
     public static int determineWinner(Warrior player1Warrior, Warrior player2Warrior){
-
-        if(player2Warrior.isInDefeatedList(player1Warrior)) {
-
+        if(player1Warrior.isInDefeatedList(player2Warrior)) {
             return 1;
         }
-
-
             else if(player1Warrior.getName().equals(player2Warrior.getName())) return 0;
                 else return -1;
     }
