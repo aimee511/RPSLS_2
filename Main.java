@@ -1,5 +1,4 @@
 package co.za.entelect.jbootcamp;
-import java.util.Base64;
 import java.util.Scanner;
 
 
@@ -8,24 +7,89 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         Scanner scanner = new Scanner(System.in);
-        Warrior warriors = new Warrior();
+        //Warrior warriors = new Warrior();
         Player player1 = new Player();
-        int chosenWarrior;
+        Player player2 = new Player();
+        String opponentSelect;
+        int playerChosenWarrior;
+        int compChosenWarrior;
 
         //TODO: Create the warrior relationships - make it configurable?
+        //TEST relationship and create warriors
 
-        //TODO: ability to configure to not use the default warriors
-        warriors.addDefault();
-        warriors.displayWarriors();
+        //CREATE NEW WARRIORS
+        Warrior rock = new Warrior("Rock");
+        Warrior paper = new Warrior("Paper");
+        Warrior scissors = new Warrior("Scissors");
+        Warrior lizard = new Warrior("Lizard");
+        Warrior spock = new Warrior("Spock");
+
+        //CREATE DEFEATS
+        rock.addDefeatedWarrior(scissors);
+        rock.addDefeatedWarrior(lizard);
+
+        paper.addDefeatedWarrior(rock);
+        paper.addDefeatedWarrior(spock);
+
+        scissors.addDefeatedWarrior(lizard);
+        scissors.addDefeatedWarrior(paper);
+
+        lizard.addDefeatedWarrior(paper);
+        lizard.addDefeatedWarrior(spock);
+
+        spock.addDefeatedWarrior(scissors);
+        spock.addDefeatedWarrior(rock);
 
 
-        //Display the warriors with the index number for user to select
-        //TODO: Ensure the Player class keeps the score and that te user can choose when to quit
+        //DISPLAY RELATIONSHIPS
+        rock.displayDefeatedWarriors(rock);
+        paper.displayDefeatedWarriors(paper);
+        scissors.displayDefeatedWarriors(scissors);
+        lizard.displayDefeatedWarriors(lizard);
+        spock.displayDefeatedWarriors(spock);
+
+
+
+
+//        Display the warriors with the index number for user to select
+       //warriors.displayWarriors();
+
+        //Select OPPONENT
+//        System.out.println("Do you  want to play against the computer? Y/N" + "\n");
+//        if(scanner.next().toLowerCase().trim().equals("y")){
+//            player2.setName("computer");
+//        } else {
+//            System.out.println("Please enter Player 2's name: ");
+//            player2.setName(scanner.next());
+//        }
+//
+//        //show the selected opponent
+//        System.out.println("Your opponent is: " + player2.getName());
+//
+//        //TODO: Ensure the Player class keeps the score
+//        //TODO: user can choose when to quit
 //        System.out.println("Please select your warrior: ");
 //        player1.setChosenWarrior(scanner.nextInt());
-//        chosenWarrior = player1.getChosenWarrior();
+//        playerChosenWarrior = player1.getChosenWarrior();
+//        System.out.println(warriors.getWarrior(playerChosenWarrior));
 
-        //System.out.println("You have chosen to play with: " + warriors.get(chosenWarrior);
+        //get random computer warrior
+        //test if random generator works
+//        int quit = 0;
+//        while(quit != 1){
+//            compChosenWarrior = warriors.getRandom();
+//            System.out.println("Random Number: " + compChosenWarrior + "\n" + "Generate another? 0 = YES; 1 = NO" + "\r");
+//            quit = scanner.nextInt();
+//        }
+
+//        compChosenWarrior = warriors.getRandom();
+//        player2.setChosenWarrior(compChosenWarrior);
+//        System.out.println(player2.getName() + " has selected " + player2.getChosenWarrior());
+
+
+        //TODO: Compare the player's warrior with the user's warrior
+
+//        System.out.println("You have chosen to play with: "  );
 
 
 

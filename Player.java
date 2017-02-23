@@ -5,7 +5,7 @@ package co.za.entelect.jbootcamp;
  */
 public class Player {
     private String name;
-    private int score;
+    //private int score;
     private int chosenWarrior;
 
     public int getChosenWarrior() {
@@ -16,9 +16,6 @@ public class Player {
         this.chosenWarrior = chosenWarrior;
     }
 
-    //outcome: won=1 lost=0
-    private int outcome;
-
     public Player() {
     }
 
@@ -26,27 +23,18 @@ public class Player {
         this.name = name;
     }
 
+    //get PLAYER name
     public String getName() {
-
         return name;
     }
 
+    //set PLAYER name
     public void setName(String name) {
         this.name = name;
     }
 
-    public int getScore() {
-        return score;
-    }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
 
-    //increase the c=score of the playere that won the round
-    private void winIncrease(String name, int outcome){
-
-    }
 
 
 }
