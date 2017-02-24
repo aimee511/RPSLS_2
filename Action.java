@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by aimee.nortje on 2/21/2017.
  */
-public class WarriorAction {
+public class Action {
     private ArrayList<String> warriorAction;
 
     //ADD warriorAction
@@ -13,7 +13,7 @@ public class WarriorAction {
         warriorAction.add(actionName);
     }
 
-    //SET DEFAULTS fro Rock Paper Scissors Lizard Spock
+    //SET DEFAULTS for Rock Paper Scissors Lizard Spock
     public void setDefaults(){
         addWarriorAction("cuts");
         addWarriorAction("covers");

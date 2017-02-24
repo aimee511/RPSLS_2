@@ -1,6 +1,7 @@
 package co.za.entelect.jbootcamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -16,7 +17,7 @@ public class Warrior {
 
     //a list of Warriors that warrior defeats
   //  private ArrayList<WarriorRelationship> defeatedWarriors;
-    private List<WarriorRelationship> warriorRelationshipList;
+    private ArrayList<WarriorRelationship> warriorRelationshipList;
 
     public Warrior(){}
 
@@ -31,158 +32,69 @@ public class Warrior {
         return new Warrior(name);
     }
 
-    private List<WarriorRelationship> getWarriorRelationship() {
+    private ArrayList<WarriorRelationship> getWarriorRelationship() {
         return warriorRelationshipList;
     }
 
+    public void getWarriorRelationshipList(){
+
+        for(int i = 0; i < this.warriorRelationshipList.size(); i++){
+
+            System.out.println(this.getName() + " beats " +  this.warriorRelationshipList.get(i).getDefeatedWarrior().getName() );
+        // this.warriorRelationshipList.get(i).getAction()
+        }
+    }
+
     //ADD a warrior to the defeatedWarrior array
-    public void createDefeatedWarrior(Warrior warrior, String action) {
+    public void createDefeatedWarrior(Warrior warrior) {
         if (findDefeatedWarrior(warrior) < 0) {
             //warrior.getDefeatedWarriors();
-            WarriorRelationship newDefeated = new WarriorRelationship(warrior, action);
+            WarriorRelationship newDefeated = new WarriorRelationship(this, warrior);
             warriorRelationshipList.add(newDefeated);
         }
     }
 
+    public WarriorRelationship createRelationship(Warrior defeatedWarrior) {
+
+       return new WarriorRelationship(this, defeatedWarrior);
+    }
 
     //pass a warrior obj to check if warrior exists in the defeated warriors list
     private int findDefeatedWarrior(Warrior warrior) {
      return this.warriorRelationshipList.indexOf(warrior);
     }
 
-//    private int findWarrior(String warriorName){
-//        for(int i = 0; i < this.warriorRelationshipList.size(); i++){
-//            //   Warrior defeatedWarrior = this.defeatedWarriors.get(i);
-//            if(defeatedWarrior.getName().equals(warriorName)){
-//                return i;
-//            }
-//        }
-//        return -1;
-//    }
-
-    public boolean isInDefeatedList(Warrior opposingWarrior){
-        if(this.warriorRelationshipList.contains(opposingWarrior)){
-            System.out.println("PLAYER WINS!!!!!");
-            return true;
-        } else {
-            System.out.println("COULD NOT DETERMINE WINNER");
-            return false;
-        }
-
-
-        //System.out.println("Checking winner: " + "\n");
-        //System.out.println("Victorious Warrior: " + this.getName());
-
-//        if(this.findDefeatedWarrior(opposingWarrior) > 0) {
-//            System.out.println("Warrior is in defeated list");
-//        } else System.out.println("Warrior is NOT defeated list");
-//        return true;
-    }
-
-
-
     public void displayWarriorRelationshipList(){
 
         for(int i = 0; i < this.warriorRelationshipList.size(); i++){
-            System.out.println(this.getName() + " " + this.warriorRelationshipList.get(i).getAction() + " " +  this.warriorRelationshipList.get(i).getDefeatedWarrior().getName() );
+            System.out.println(this.getName() + " beats " +  this.warriorRelationshipList.get(i).getDefeatedWarrior().getName() );
+            //" + this.warriorRelationshipList.get(i).getAction() + "
         }
     }
-
 
     public String getName() {
         return name;
     }
 
-//    //get random warrior
-//    public int getRandom(){
-//
-//       Random generator = new Random();
-//       int randIndex = generator.nextInt(warriorList.size());
-//       return randIndex;
-//    }
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (!(obj instanceof Warrior)){
+            return false;
+        }
 
+        Warrior warrior = (Warrior) obj;
+        return Objects.equals(name, warrior.name) &&
+                Objects.equals(warriorRelationshipList, warrior.warriorRelationshipList);
 
+//        return super.equals(obj);
 
+    }
 
-
-
-
-//    public void addDefault(){
-//        warriorList.add("Rock");
-//        warriorList.add("Paper");
-//        warriorList.add("Scissors");
-//        warriorList.add("Lizard");
-//        warriorList.add("Spock");
-//
-//    }
-
-    //create new ArrayList for each warrior to determine which other warriors they beat
-
-
-    //get name
-
-
-
-
-
-//    public String getDefeatedName(int warriorIndex){
-//        return  defeatedWarriors.get(warriorIndex);
-//    }
-
-
-
-
-
-//
-
-//    //ADD warrior list item
-//    public void addWarrior(String warrior){
-//        warriorList.add(warrior);
-//    }
-//
-//    //GET warrior list item NAME
-//    public String getWarrior(int warriorIndex){
-//        return  warriorList.get(warriorIndex);
-//    }
-//
-//    //REMOVE warrior list item
-//    public void removeWarrior(int position){
-//       String theItemToRemove = warriorList.get(position);
-//       warriorList.remove(theItemToRemove);
-//    }
-//
-//    //MODIFY Existing warrior list item
-//    public String modifyExisting(int position, String newWarrior){
-//        warriorList.set(position, newWarrior);
-//        String modifiedWarrior = warriorList.get(position);
-//        return modifiedWarrior;
-//    }
-//
-//    //QUERY warrior list item
-//    public String findWarrior(String searchItem){
-//        //could do a for loop - expensive - use contains
-//        //boolean exists = warriorList.contains(searchItem);
-//
-//        //use index - returns the index position of the item searched - if it's -1, the items does not exist
-//        int position = warriorList.indexOf(searchItem);
-//        if(position >= 0){
-//            return warriorList.get(position);
-//        }
-//
-//        return null;
-//    }
-
-//    public void displayWarriors(){
-//        // OLD way to loop
-////        for(int i = 0; i < warriorList.size(); i++){
-////            System.out.println(i + ": " + warriorList.get(i));
-////        }
-//
-//        //NEW way to loop
-//        for(String temp : warriorList){
-//            System.out.println(warriorList.indexOf(temp) + ": " + temp);
-//        }
-//    }
+    @Override
+    public int hashCode(){
+        return Objects.hash(name, warriorRelationshipList);
+    }
 
 
 }
