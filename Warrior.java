@@ -1,42 +1,68 @@
 package co.za.entelect.jbootcamp;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Random;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.*;
 
 /**
  * Created by aimee.nortje on 2/21/2017.
  */
 public class Warrior {
 
-    //calling the empty constructor
-   // private ArrayList<String> warriorList = new ArrayList<String>();
-
-    //private String name;
     private String name;
 
-    //a list of Warriors that warrior defeats
-  //  private ArrayList<WarriorRelationship> defeatedWarriors;
-    private ArrayList<WarriorRelationship> warriorRelationshipList;
+    public Warrior() {
+    }
 
-    public Warrior(){}
-
-    //Default constructor to initialize name and the list of other warriors this warrior defeats (creates empty list)
     public Warrior(String name) {
         this.name = name;
-      //  this.defeatedWarriors = new ArrayList<WarriorRelationship>();
-        this.warriorRelationshipList = new ArrayList<WarriorRelationship>();
     }
 
-    public static Warrior createNewWarrior(String name){
-        return new Warrior(name);
+
+    public String getName() {
+        return name;
     }
 
-    private ArrayList<WarriorRelationship> getWarriorRelationship() {
-        return warriorRelationshipList;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void getWarriorRelationshipList(){
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if(obj == null || getClass() != obj.getClass()) return false;
+
+        Warrior warrior = (Warrior) obj;
+
+        if(name != warrior.name) return false;
+        return Objects.equals(name, warrior.name);
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(name);
+    }
+
+    @Override
+    public String toString(){
+        return name;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+    //test method to print relationship
+    public void displpayWarriorRelationshipList(){
 
         for(int i = 0; i < this.warriorRelationshipList.size(); i++){
 
@@ -98,3 +124,4 @@ public class Warrior {
 
 
 }
+*/

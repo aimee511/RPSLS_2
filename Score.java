@@ -3,7 +3,7 @@ package co.za.entelect.jbootcamp;
 /**
  * Created by aimee.nortje on 2/22/2017.
  */
-public class Score extends Player{
+public class Score {
 
     private int score;
     private Player player1;

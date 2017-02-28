@@ -5,10 +5,17 @@ package co.za.entelect.jbootcamp;
  */
 public class Player {
     private String name;
-    //private int score;
-    private int chosenWarrior;
     private Warrior chosenWarriorObject;
-    private int score;
+    private String choseWarriorString;
+    private int score = 0;
+
+    public String getChoseWarriorString() {
+        return choseWarriorString;
+    }
+
+    public void setChoseWarriorString(String choseWarriorString) {
+        this.choseWarriorString = choseWarriorString;
+    }
 
     public int getScore() {
         return score;
@@ -18,24 +25,16 @@ public class Player {
         this.score = score;
     }
 
+    public void incrementScore() {
+        this.score++;
+    }
+
     public Warrior getChosenWarriorObject(int warriorIndex) {
         return chosenWarriorObject;
     }
 
     public void setChosenWarriorObject(Warrior chosenWarriorObject) {
         this.chosenWarriorObject = chosenWarriorObject;
-       // System.out.println("Player Class - player chosen warrior set: " + chosenWarriorObject.getName());
-    }
-
-    public int getChosenWarrior() {
-        return chosenWarrior;
-    }
-
-    public void setChosenWarrior(int chosenWarrior) {
-        this.chosenWarrior = chosenWarrior;
-    }
-
-    public Player() {
     }
 
     public Player(String name) {
@@ -51,9 +50,5 @@ public class Player {
     public void setName(String name) {
         this.name = name;
     }
-
-
-
-
 
 }

@@ -13,18 +13,7 @@ public class Action {
         warriorAction.add(actionName);
     }
 
-    //SET DEFAULTS for Rock Paper Scissors Lizard Spock
-    public void setDefaults(){
-        addWarriorAction("cuts");
-        addWarriorAction("covers");
-        addWarriorAction("crushes");
-        addWarriorAction("poisons");
-        addWarriorAction("smashes");
-        addWarriorAction("decapitates");
-        addWarriorAction("eats");
-        addWarriorAction("disproves");
-        addWarriorAction("vaporizes");
-    }
+
 
     //GET warriorActions
     public String getActions(int position){
