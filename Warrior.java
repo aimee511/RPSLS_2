@@ -4,12 +4,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
+
+
 /**
  * Created by aimee.nortje on 2/21/2017.
  */
 public class Warrior {
 
     private String name;
+    private static InputStream inputStream;
+
 
     public Warrior() {
     }
@@ -27,101 +31,47 @@ public class Warrior {
         this.name = name;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if(obj == null || getClass() != obj.getClass()) return false;
+    public static void setWarriors(List<Warrior> warriors) throws IOException {
 
-        Warrior warrior = (Warrior) obj;
+        try {
+            Properties prop = new Properties();
+            String propFileName = "warriors.properties";
 
-        if(name != warrior.name) return false;
-        return Objects.equals(name, warrior.name);
+            inputStream = Warrior.class.getClassLoader().getResourceAsStream(propFileName);
+
+            if ( inputStream != null ) {
+                prop.load(inputStream);
+            } else {
+                throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+            }
+
+            for (String key : prop.stringPropertyNames()) {
+                warriors.add(new Warrior(prop.getProperty(key)));
+            }
+
+
+        } catch (Exception e) {
+            System.out.println("Exception: " + e);
+        } finally {
+            inputStream.close();
+        }
+
     }
 
-    @Override
-    public int hashCode(){
-        return Objects.hash(name);
+    public static Warrior getWarriorByName(List<Warrior> warriorList, String warriorName){
+        for(Warrior warrior : warriorList){
+            if(warrior.getName().toLowerCase().equals(warriorName.toLowerCase())){
+                return warrior;
+            }
+        }
+        return null;
     }
 
+
+
     @Override
-    public String toString(){
+    public String toString() {
         return name;
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-    /*
-    //test method to print relationship
-    public void displpayWarriorRelationshipList(){
-
-        for(int i = 0; i < this.warriorRelationshipList.size(); i++){
-
-            System.out.println(this.getName() + " beats " +  this.warriorRelationshipList.get(i).getDefeatedWarrior().getName() );
-        // this.warriorRelationshipList.get(i).getAction()
-        }
-    }
-
-    //ADD a warrior to the defeatedWarrior array
-    public void createDefeatedWarrior(Warrior warrior) {
-        if (findDefeatedWarrior(warrior) < 0) {
-            //warrior.getDefeatedWarriors();
-            WarriorRelationship newDefeated = new WarriorRelationship(this, warrior);
-            warriorRelationshipList.add(newDefeated);
-        }
-    }
-
-    public WarriorRelationship createRelationship(Warrior defeatedWarrior) {
-
-       return new WarriorRelationship(this, defeatedWarrior);
-    }
-
-    //pass a warrior obj to check if warrior exists in the defeated warriors list
-    private int findDefeatedWarrior(Warrior warrior) {
-     return this.warriorRelationshipList.indexOf(warrior);
-    }
-
-    public void displayWarriorRelationshipList(){
-
-        for(int i = 0; i < this.warriorRelationshipList.size(); i++){
-            System.out.println(this.getName() + " beats " +  this.warriorRelationshipList.get(i).getDefeatedWarrior().getName() );
-            //" + this.warriorRelationshipList.get(i).getAction() + "
-        }
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (!(obj instanceof Warrior)){
-            return false;
-        }
-
-        Warrior warrior = (Warrior) obj;
-        return Objects.equals(name, warrior.name) &&
-                Objects.equals(warriorRelationshipList, warrior.warriorRelationshipList);
-
-//        return super.equals(obj);
-
-    }
-
-    @Override
-    public int hashCode(){
-        return Objects.hash(name, warriorRelationshipList);
-    }
-
-
-}
-*/
