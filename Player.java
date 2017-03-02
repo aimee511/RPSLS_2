@@ -54,12 +54,9 @@ public class Player {
     }
 
     public void setPlayerWarrior(Map<Player, Warrior> playerWarriorMap, List<Warrior> warriorList,
-                                        Player player){
-        //Warrior playerChosenWarrior;
-        //playerChosenWarrior =
-        //setChosenWarrior(playerChosenWarrior);
-        player.chosenWarrior = Warrior.getWarriorByName(warriorList, scanner.next());
-        playerWarriorMap.put(player, player.chosenWarrior);
-    }
+                                        Player player) {
 
+            player.chosenWarrior = Warrior.getWarriorByName(warriorList, scanner.next());
+            playerWarriorMap.put(player, player.chosenWarrior);
+    }
 }

@@ -10,6 +10,7 @@ public class Game {
     public static void main(String[] args)throws IOException {
         boolean quit = false;
         int userOption;
+        int numberPlayers;
         Game game = new Game();
 
        // Player player;
@@ -49,7 +50,10 @@ public class Game {
         }
 
         System.out.println("Number of players: ");
-        int numberPlayers = scanner.nextInt();
+        String numberPlayersIn = scanner.next();
+        if(Helper.isInteger(numberPlayersIn)){
+            numberPlayers = (Integer.parseInt(numberPlayersIn));
+        } else numberPlayers = 0;
 
         for (int i = 0; i < numberPlayers; i++) {
             System.out.println("Enter player " + (i+1));
@@ -58,10 +62,12 @@ public class Game {
         }
 
         while (!quit) {
-            for (Player player : players) {
-                System.out.println(player.getName() + " please select your warrior");
-                player.setPlayerWarrior(playerWarriorMap, warriorList, player);
+
+                for (Player player : players) {
+                    System.out.println(player.getName() + " please select your warrior");
+                    player.setPlayerWarrior(playerWarriorMap, warriorList, player);
             }
+
 
             game.getResults(playerWarriorMap, players, warriorRelationshipList);
 
@@ -80,7 +86,7 @@ public class Game {
         }
     }
 
-    public Game() {
+    private Game() {
     }
 
     private void getResults(Map<Player, Warrior> playerWarriorMap, List<Player> players,
